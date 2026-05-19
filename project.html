@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expense IQ</title>
+<link rel="stylesheet" href="expenseiqproject.css">
+</head>
+
+<body>
+
+<div class="navbar">
+    <h2>Expense IQ</h2>
+    <div>
+        <button onclick="scrollToSection('tours')">Tours</button>
+        <button onclick="scrollToSection('reviewsSection')">Reviews</button>
+        <button onclick="scrollToSection('faqSection')">FAQ</button>
+        <button onclick="scrollToSection('contact')">Contact Us</button>
+        <button onclick="handleAuthClick()">Sign Up</button>
+    </div>
+</div>
+
+<div id="signupModal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-btn" onclick="toggleModal(false)">&times;</span>
+        <h2 id="modalTitle">Welcome Back</h2>
+        <p id="modalSub">Login to continue</p>
+
+        <input type="text" id="regUser" placeholder="Username">
+        <small id="errUser" class="error-msg"></small>
+
+        <input type="password" id="regPass" placeholder="Password">
+        <small id="errPass" class="error-msg"></small>
+
+        <div id="extraFields" style="display:none;">
+            <input type="email" id="regEmail" placeholder="Email Address">
+            <small id="errEmail" class="error-msg"></small>
+
+            <input type="text" id="regPhone" placeholder="Contact Number">
+            <small id="errPhone" class="error-msg"></small>
+
+            <textarea id="regAddr" placeholder="Residential Address"></textarea>
+            <small id="errAddr" class="error-msg"></small>
+        </div>
+
+        <button class="signup-btn" id="authBtn" onclick="processAuth()">Login</button>
+
+        <p class="toggle-text">
+            Don't have an account?
+            <span onclick="switchToSignup()">Sign Up</span>
+        </p>
+    </div>
+</div>
+
+<div class="hero">
+    <div>
+        <h1>EXPENSE IQ</h1>
+        <p>Smart Travel Budgeting</p>
+        <h1 style="font-size:29px;">START PLANNING</h1>
+    </div>
+</div>
+
+<div class="budget-container">
+    <h2>Travel Budget Calculator</h2>
+
+    <form class="budget-form">
+
+        <label>Number of Travelers</label>
+        <input type="number" id="travellers" placeholder="Enter number of travelers">
+
+        <label>Number of Days</label>
+        <input type="number" id="days" placeholder="Enter number of days">
+
+        <label>Your Total Budget (₹)</label>
+        <input type="number" id="userBudget" placeholder="Enter your budget">
+
+        <label>Select Starting City</label>
+       <select id="fromCity" onchange="checkCustomPlace()">
+            <option value="" disabled selected>Select starting city</option>
+            <option>Chandigarh</option>
+            <option>Delhi</option>
+            <option>Kurukshetra</option>
+            <option>Rajpura</option>
+            <option>Gurugram</option>
+            <option>Patiala</option>
+            <option>Other</option>
+        </select>
+
+<input type="text" id="customFromCity" placeholder="Enter your city"
+style="display:none;">
+
+       <label>Select Destination</label>
+      <select id="toCity" onchange="checkCustomPlace()">
+        <option value="" disabled selected>Select Destination</option>
+        <option>Goa</option>
+        <option>Manali</option>
+        <option>Kerala</option>
+        <option>Kashmir</option>
+        <option>Ladakh</option>
+        <option>Other</option>
+    </select>
+
+<input type="text" id="customToCity" placeholder="Enter destination"
+style="display:none;">
+
+        <label>Travel Preference</label>
+        <select id="transport">
+            <option value="" disabled selected>Select mode</option>
+            <option value="flight">Flight</option>
+            <option value="public">Public Transport</option>
+            <option value="car">Car</option>
+            <option value="bike">Bike</option>
+        </select>
+
+        <button type="button" onclick="calculateBudget()">Calculate Budget</button>
+    </form>
+
+    <div id="budgetResult"></div>
+</div>
+
+<div class="section">
+    <h2>Why To Choose Expense IQ</h2>
+
+    <div class="card-container">
+        <div class="card">💡 Smart Budget Planning</div>
+        <div class="card">📊 Expense Breakdown</div>
+        <div class="card">🌍 Travel Insights</div>
+        <div class="card">💡 24*7</div>
+    </div>
+</div>
+<h2 class="offer-heading">🔥 Special Offers</h2>
+
+<div class="offer-container">
+
+    <div class="offer-card">
+        🎁 20% OFF on first 2 bookings of MANALI
+    </div>
+
+    <div class="offer-card">
+        ✈️ free breakfast if you choose transport-- AIRLINE
+    </div>
+
+    <div class="offer-card">
+        🔥 Early Booking Discount upto 15%
+    </div>
+    
+    <div class="offer-card">
+        🎁 10% OFF on premium subscription card on every booking 
+    </div>
+
+</div>
+
+<div id="tours" class="section">
+    <h2>Popular Tours & Packages</h2>
+    <div class="card-container" id="tourList"></div>
+</div>
+
+<div id="reviewsSection" class="section">
+    <h2>User Reviews</h2>
+
+    <div class="card-container" id="reviewList"></div>
+
+    <h3 style="margin-top:40px;">Add Your Review</h3>
+
+    <input type="text" id="reviewName" placeholder="Your Name"><br>
+    <textarea id="reviewText" placeholder="Your Review"></textarea><br>
+    <button type="button" onclick="addReview()">Submit</button>
+</div>
+
+<div id="faqSection" class="section">
+    <h2>Frequently Asked Questions</h2>
+    <div id="faqContainer" class="faq-container"></div>
+</div>
+
+<h2 class="contact-title">Contact Us</h2>
+
+<div id="contact" class="contact-container">
+  <form id="contactform">
+    <input type="text" id="name" placeholder="Name">
+    <input type="email" id="email" placeholder="Email">
+    <textarea id="message" placeholder="Message"></textarea>
+    <button type="submit" class="submit-btn">Send</button>
+   
+  </form>
+</div>
+
+<div class="footer">
+    © 2026 Expense IQ
+    <a href="https://facebook.com" target="_blank">Facebook</a> |
+    <a href="https://instagram.com" target="_blank">Instagram</a> |
+    <a href="https://twitter.com" target="_blank">Twitter</a>
+</div>
+
+<script>
+
+const tourData = [
+    { name: "Manali", img: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600", file: "manali.html" },
+    { name: "Goa", img: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=600", file: "goa.html" },
+    { name: "Jaipur", img: "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=600", file: "jaipur.html" },
+    { name: "Kashmir", img: "https://images.unsplash.com/photo-1598091383021-15ddea10925d?w=600", file: "kashmir.html" },
+    { name: "Kerala", img: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600", file: "kerala.html" },
+    { name: "Ladakh", img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=600", file: "ladakh.html" }
+];
+
+const faqData = [
+    { q: "How accurate is the budget calculator?", a: "It provides an estimate based on average costs for hotel, food, and travel." },
+    { q: "Can I save my trip details?", a: "Yes, once you sign up, your preferences are remembered in your browser." }
+];
+
+let reviewsData = JSON.parse(localStorage.getItem("reviews")) || [
+    { name: "Rahul", text: "Amazing tool for trip planning!", stars: "⭐" }
+];
+
+let isLoginMode = true;
+
+function handleAuthClick() {
+    localStorage.getItem("username") ? switchToLogin() : switchToSignup();
+    toggleModal(true);
+}
+
+function toggleModal(show) {
+    document.getElementById("signupModal").style.display = show ? "flex" : "none";
+}
+
+function switchToLogin() {
+    isLoginMode = true;
+    document.getElementById("modalTitle").innerText = "Welcome Back";
+    document.getElementById("authBtn").innerText = "Login";
+    document.getElementById("extraFields").style.display = "none";
+}
+
+function switchToSignup() {
+    isLoginMode = false;
+    document.getElementById("modalTitle").innerText = "Create Account";
+    document.getElementById("authBtn").innerText = "Register";
+    document.getElementById("extraFields").style.display = "block";
+}
+
+function processAuth() {
+
+    let user = document.getElementById("regUser").value;
+    let pass = document.getElementById("regPass").value;
+
+    if(isLoginMode){
+
+        let savedUser = localStorage.getItem("username");
+        let savedPass = localStorage.getItem("password");
+
+        if(user === savedUser &&
+           pass === savedPass &&
+           email === savedEmail &&
+           phone === savedPhone){
+
+            alert("Login Successful");
+            toggleModal(false);
+
+        } else {
+            alert("Invalid Details");
+        }
+
+    } else {
+
+        localStorage.setItem("username", user);
+        localStorage.setItem("password", pass);
+
+        alert("Signup Successful");
+        switchToLogin();
+    }
+}
+
+function init() {
+
+    const tList = document.getElementById("tourList");
+
+    tourData.forEach(tour => {
+        tList.innerHTML += `
+        <div class="card">
+            <img src="${tour.img}">
+            <h3>${tour.name}</h3>
+            <button onclick="openPage('${tour.file}')">Explore</button>
+        </div>`;
+    });
+
+    const fCont = document.getElementById("faqContainer");
+
+    faqData.forEach((item,index) => {
+        fCont.innerHTML += `
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(${index})">
+                ${item.q} <span>+</span>
+            </div>
+            <div id="faq-ans-${index}" class="faq-answer">${item.a}</div>
+        </div>`;
+    });
+
+    displayReviews();
+}
+
+function toggleFAQ(i) {
+    const ans = document.getElementById(`faq-ans-${i}`);
+    ans.style.display = ans.style.display === "block" ? "none" : "block";
+}
+
+function displayReviews() {
+    const rList = document.getElementById("reviewList");
+    rList.innerHTML = "";
+
+    reviewsData.forEach(rev => {
+        rList.innerHTML += `
+        <div class="card">${rev.stars} ${rev.text} - ${rev.name}</div>`;
+    });
+}
+
+
+function addReview() {
+
+    let name = document.getElementById("reviewName").value;
+    let text = document.getElementById("reviewText").value;
+
+    if(name && text){
+
+        reviewsData.push({
+            name:name,
+            text:text,
+            stars:"⭐"
+        });
+
+        localStorage.setItem("reviews", JSON.stringify(reviewsData));
+
+        displayReviews();
+
+        document.getElementById("reviewName").value="";
+        document.getElementById("reviewText").value="";
+    }
+}
+
+function scrollToSection(id){
+    document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+
+function openPage(page){
+    window.location.href = page;
+}
+
+function sendMessage(){
+    alert("Message Sent!");
+}
+
+function calculateBudget(){
+
+    let t = parseInt(document.getElementById("travellers").value);
+    let d = parseInt(document.getElementById("days").value);
+    let userBudget = parseInt(document.getElementById("userBudget").value);
+
+    if(isNaN(t) || isNaN(d) || isNaN(userBudget)) return;
+
+    let perPerson = userBudget / t;
+    let perDay = userBudget / d;
+
+    /* Smart Budget Breakdown */
+    let hotel = userBudget * 0.40;
+    let food = userBudget * 0.30;
+    let transport = userBudget * 0.20;
+    let shopping = userBudget * 0.05;
+    let emergency = userBudget * 0.05;
+
+    let warning = "";
+
+    if(perPerson < 3000){
+        warning = "<br><span style='color:red;'>⚠ Budget may not be enough for this trip</span>";
+    }
+
+    document.getElementById("budgetResult").innerHTML =
+    `<b>Per Person: ₹${Math.floor(perPerson)} | Per Day: ₹${Math.floor(perDay)}</b>
+    <br><br>
+    <b>Smart Budget Breakdown</b><br>
+    Hotel Stay: ₹${Math.floor(hotel)}<br>
+    Food: ₹${Math.floor(food)}<br>
+    Transport: ₹${Math.floor(transport)}<br>
+    Shopping: ₹${Math.floor(shopping)}<br>
+    Emergency Fund: ₹${Math.floor(emergency)}
+    ${warning}`;
+}
+
+init();
+function checkCustomPlace(){
+
+    let from = document.getElementById("fromCity").value;
+    let to = document.getElementById("toCity").value;
+
+    document.getElementById("customFromCity").style.display =
+        from === "Other" ? "block" : "none";
+
+    document.getElementById("customToCity").style.display =
+        to === "Other" ? "block" : "none";
+}
+document.getElementById("contactform").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  let nameInput = document.getElementById("name");
+  let emailInput = document.getElementById("email");
+  let messageInput = document.getElementById("message");
+
+  let name = nameInput.value.trim();
+  let email = emailInput.value.trim();
+  let message = messageInput.value.trim();
+
+  let isValid = true;
+
+  // Name validation
+  if (name === "") {
+    nameInput.classList.add("error");   // 👈 HERE
+    isValid = false;
+  } else {
+    nameInput.classList.remove("error");
+  }
+
+  // Email validation
+  if (email === "") {
+    emailInput.classList.add("error");
+    isValid = false;
+  } else {
+    emailInput.classList.remove("error");
+  }
+
+  // Message validation
+  if (message === "") {
+    messageInput.classList.add("error");
+    isValid = false;
+  } else {
+    messageInput.classList.remove("error");
+  }
+
+  // Final check
+  if (!isValid) {
+    alert("Please fill the details first");
+    return;
+  }
+
+  // Success
+  alert("Message sent successfully!");
+});
+</script>
+
+</body>
+</html>

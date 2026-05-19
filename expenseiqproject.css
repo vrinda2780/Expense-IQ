@@ -1,0 +1,357 @@
+/* GLOBAL STYLES */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #0d1117;
+    color: #e6edf3;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: #252628;
+}
+
+.navbar h2 {
+    color: #e44b0e;
+    margin: 0;
+}
+
+.navbar button {
+    background: #f25c05;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.navbar button:hover {
+    transform: scale(1.1);
+    background: #ff7b00;
+}
+/*special offers*/
+.offer-card{
+    background:#1e293b;
+    padding:15px;
+    border-radius:10px;
+    width:220px;
+    transition:0.3s;
+    cursor:pointer;
+}
+.offer-container{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+
+
+.offer-card:hover{
+    transform:translateY(-10px) scale(1.05);
+    box-shadow:0 0 20px rgba(255,123,0,0.7);
+    background:#ff7b00;
+}
+.offer-heading{
+    text-align:center;
+}
+
+
+/* HERO */
+.hero {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: url('https://img.freepik.com/premium-photo/travel-outdoors-illuminated-adventure-tent-landscape-sky-beautiful-tourism-camp-background-night-nature-mountains-lifestyle-light-summer-dark-hike_163305-242533.jpg') center/cover;
+}
+
+.hero h1 {
+    font-size: 60px;
+    margin: 10px 0;
+}
+
+/* SECTION */
+.section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+/* CARDS */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #161b22;
+    padding: 20px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    background: #1f2630;
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* BUDGET CALCULATOR */
+.budget-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px auto;
+}
+
+.budget-form {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    gap: 10px;
+}
+
+.budget-form input,
+.budget-form select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.budget-form button {
+    padding: 10px;
+    background: teal;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#budgetResult {
+    margin-top: 20px;
+}
+
+/* MODAL */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    color: white;
+    position: relative;
+}
+
+.modal-content input,
+.modal-content textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.signup-btn {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.error-msg {
+    color: #ff8e8e;
+    font-size: 11px;
+}
+
+.toggle-text {
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+.toggle-text span {
+    color: #3b82f6;
+    cursor: pointer;
+}
+
+/* FAQ */
+.faq-container {
+    max-width: 800px;
+    margin: auto;
+    text-align: left;
+}
+
+.faq-item {
+    background: #f9f9f9;
+    color: black;
+    padding: 15px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.faq-question {
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+
+.faq-answer {
+    display: none;
+    margin-top: 10px;
+}
+
+/* REVIEW SECTION */
+#reviewsSection input,
+#reviewsSection textarea {
+    width: 90%;
+    max-width: 1500px;
+    padding: 12px;
+    margin: 8px 0;
+    background: transparent;
+    border: 1px solid #2f3b4a;
+    color: white;
+    outline: none;
+}
+
+#reviewsSection textarea {
+    height: 80px;
+    resize: none;
+}
+
+#reviewsSection button {
+    margin-top: 10px;
+    background: white;
+    color: black;
+    border: none;
+    padding: 8px 18px;
+    cursor: pointer;
+}
+
+/* Center container */
+.contact-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Form width control */
+#contactform {
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Inputs */
+#contactform input,
+#contactform textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background: transparent;
+    border: 1px solid #2f3b4a;
+    color: white;
+    outline: none;
+    transition: 0.3s;
+}
+h2{
+    align-items: center;
+}
+/* Focus */
+#contactform input:focus,
+#contactform textarea:focus {
+    border-color: #2ea043;
+}
+.contact-title {
+    text-align: center;
+}
+
+.contact-container {
+    display: flex;
+    justify-content: center;
+}
+
+#contactform {
+    width: 100%;
+    max-width: 500px;
+}
+
+.submit-btn {
+    display: block;
+    margin: 15px auto; /* centers button */
+}
+/* Button alignment */
+.submit-btn {
+    margin-top: 10px;
+    background: #238636;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    display: block;
+    margin-left: auto; /* pushes button to right */
+}
+
+.submit-btn:hover {
+    background: #2ea043;
+}
+
+/* Optional error message text */
+.error-message {
+    color: #ff4d4d;
+    font-size: 14px;
+    margin-top: -5px;
+}
+
+/* FOOTER */
+.footer {
+    background: #010409;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer a {
+    color: #3b82f6;
+    text-decoration: none;
+    margin: 0 5px;
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ladakh Tour</title>
+<style>
+body { font-family: Arial; background:#0d1117; color:white; text-align:center; }
+img{
+    width:300px;
+    margin:10px;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+img:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 20px rgba(255,123,0,0.7);
+}
+input, select{
+    width:250px;
+    padding:10px;
+    margin:10px;
+    border-radius:8px;
+}
+
+button{
+    width:120px;
+    padding:10px;
+    margin:10px;
+}
+button { cursor:pointer; background:#ff7b00; border:none; color:white; border-radius:6px; transition:0.3s;}
+button:hover { transform: scale(1.1); box-shadow: 0 0 15px rgba(255,100,0,0.5);}
+</style>
+</head>
+<body>
+
+<h1>Explore Ladakh</h1>
+
+<img src="c:\Users\LENOVO\OneDrive\Desktop\images\LADAKH2.jpeg">
+<img src="c:\Users\LENOVO\OneDrive\Desktop\images\LADAKH4.jpeg">
+<img src="c:\Users\LENOVO\OneDrive\Desktop\images\LADAKH3.jpeg">
+<img src="c:\Users\LENOVO\OneDrive\Desktop\images\LADAKH1.jpeg">
+
+
+<h2>Book Your Trip</h2>
+<input type="text" id="name" placeholder="Your Name"><br>
+<input type="number" id="days" placeholder="Number of Days"><br>
+<label>From Date</label><br>
+<input type="date" id="fromdate"><br>
+
+<label>To Date</label><br>
+<input type="date" id="todate"><br>
+<input type="text" id="customFromCity" placeholder="📍 Pickup Location"><br>
+ 
+        <select id="transport">
+            <option value="" disabled selected>Select mode</option>
+            <option value="flight">Flight</option>
+            <option value="public">Public Transport</option>
+            <option value="car">Car</option>
+            <option value="bike">Bike</option>
+        </select><br>
+
+        <select id=""Hotel>
+    <option value="" disabled selected>Select Hotel </option>
+<option>Budget</option>
+<option>Standard</option>
+<option>Luxury</option>
+</select><br>
+
+
+<input type=" contact number" id="contact" placeholder="contact number"><br>
+<input type=" email id " id="email" placeholder="email id"><br>
+<select id="payment">
+<option value="">Select Payment</option>
+<option value="UPI">UPI</option>
+<option value="Card">Credit/Debit Card</option>
+<option value="Net Banking">Net Banking</option>
+<option value="Cash">Cash</option>
+</select><br>
+<button onclick="book()">Book Now</button>
+
+<script>
+function book(){
+    var name=document.getElementById("name").value;
+    var days=document.getElementById("days").value;
+     var contactnumber=document.getElementById("contact").value;
+    var fromdate=document.getElementById("fromdate").value;
+    var todate=document.getElementById("todate").value;
+    var customFromCity=document.getElementById("customFromCity").value;
+    if(name==""||days==""||contact==""||email==""||payment==""||fromdate==""||todate==""||customFormCity==""){ alert("Fill all details first!"); }
+    else{ alert("✅Trip booked for "+name+" for "+days+" days!"); }
+}
+</script>
+
+</body>
+</html>
