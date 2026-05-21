@@ -18,6 +18,7 @@
         <button onclick="scrollToSection('faqSection')">FAQ</button>
         <button onclick="scrollToSection('contact')">Contact Us</button>
         <button onclick="handleAuthClick()">Sign Up</button>
+        
     </div>
 </div>
 
@@ -57,7 +58,13 @@
     <div>
         <h1>EXPENSE IQ</h1>
         <p>Smart Travel Budgeting</p>
-        <h1 style="font-size:29px;">START PLANNING</h1>
+         <h1 style="font-size:29px;">START PLANNING</h1>
+
+<div id="liveQuote" style="margin-top:18px; padding:16px 24px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.25); border-radius:12px; max-width:560px; text-align:center;">
+  <p id="quoteText" style="font-size:15px; font-style:italic; color:#fff; margin:0 0 8px;">Loading quote...</p>
+  <p id="quoteAuthor" style="font-size:13px; color:rgba(255,255,255,0.7); margin:0 0 12px;"></p>
+  <button onclick="fetchTravelQuote()" style="background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3); color:#fff; padding:6px 16px; border-radius:8px; cursor:pointer; font-size:13px;">🔄 New Quote</button>
+</div>
     </div>
 </div>
 
@@ -193,6 +200,20 @@ style="display:none;">
 </div>
 
 <script>
+     async function fetchTravelQuote() {
+  document.getElementById("quoteText").textContent = "Loading...";
+  document.getElementById("quoteAuthor").textContent = "";
+  try {
+    const res = await fetch("https://api.quotable.io/random?tags=travel,inspirational,life");
+    const data = await res.json();
+    document.getElementById("quoteText").textContent = "\u201c" + data.content + "\u201d";
+    document.getElementById("quoteAuthor").textContent = "\u2014 " + data.author;
+  } catch (e) {
+    document.getElementById("quoteText").textContent = "\u201cThe world is a book, and those who do not travel read only one page.\u201d";
+    document.getElementById("quoteAuthor").textContent = "\u2014 Saint Augustine";
+  }
+}
+fetchTravelQuote();
 
 const tourData = [
     { name: "Manali", img: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600", file: "manali.html" },
